@@ -19,7 +19,7 @@ def loading(stop_event):
 model = OllamaLLM(model="Gemma3:1b")
 
 template = """
-You are a helpful assistant. Answer the following question based on the context provided.
+You are a helpful assistant. Answer the following question. Primarily try to answer based on the context provided.
 Context: {context}
 Question: {question}
 """
@@ -64,7 +64,6 @@ while True:
     
     question = input(f"{BLUE}Enter your question (or 'bye' to quit): {RESET}")
     if question.lower() == 'bye':
-        print("\n")
         print("Goodbye!")
         break
 
@@ -83,4 +82,3 @@ while True:
     
     print("\n")
     print(result)
-

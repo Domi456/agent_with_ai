@@ -3,6 +3,8 @@ import json
 import csv
 from PyPDF2 import PdfReader
 
+readable_extensions = [".txt", ".csv", ".json", ".pdf", ".cs", ".py", ".js", ".sh", ".java"]
+
 class ContextSource:
     # a path a paramétere az osztálynak
     def __init__(self, path):
@@ -10,7 +12,7 @@ class ContextSource:
 
     def parse_to_string(self):
         _, extension = os.path.splitext(self.path)
-        if extension == ".txt" or extension == ".cs" or extension == ".py" or extension == ".js":
+        if extension in readable_extensions:
             return self._process_txt()
         elif extension == ".csv":
             return self._process_csv()
