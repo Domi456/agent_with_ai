@@ -15,6 +15,19 @@ def loading(stop_event):
         if idx == len(animation):
             idx = 0
 
+BLUE = "\x1b[0;36m"
+RESET = "\x1b[0m"
+logo = f"""
+
+   \033[38;2;{0};{0};{139}m██╗    ██████╗ ██╗     ██╗      █████╗ ███╗   ███╗ █████╗{RESET}
+   \033[38;2;{0};{42};{165}m██║   ██╔═══██╗██║     ██║     ██╔══██╗████╗ ████║██╔══██╗{RESET}
+\033[38;2;{0};{85};{191}m████████╗██║██╗██║██║     ██║     ███████║██╔████╔██║███████║{RESET}
+\033[38;2;{0};{127};{217}m██╔═██╔═╝██║██║██║██║     ██║     ██╔══██║██║╚██╔╝██║██╔══██║{RESET}
+\033[38;2;{0};{169};{243}m██████║  ╚█║████╔╝███████╗███████╗██║  ██║██║ ╚═╝ ██║██║  ██║{RESET}
+\033[38;2;{0};{211};{255}m╚═════╝   ╚╝╚═══╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝{RESET}
+                                                    \033[38;2;{0};{255};{255}mDomi456{RESET}
+
+"""
 
 model = OllamaLLM(model="Gemma3:1b")
 
@@ -27,6 +40,8 @@ Question: {question}
 prompt = ChatPromptTemplate.from_template(template)
 chain = prompt | model
 
+print(logo)
+
 questions = [
   inquirer.List('src',
                 message="Context?",
@@ -35,8 +50,6 @@ questions = [
 ]
 answers = inquirer.prompt(questions)
 
-BLUE = "\x1b[0;36m"
-RESET = "\x1b[0m"
 context = ""
 
 if answers['src'] == 'from file':
